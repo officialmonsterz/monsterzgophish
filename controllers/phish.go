@@ -150,12 +150,6 @@ func (ps *PhishingServer) TrackHandler(w http.ResponseWriter, r *http.Request) {
 	rid := ctx.Get(r, "rid").(string)
 	d := ctx.Get(r, "details").(models.EventDetails)
 
-	// Check for a transparency request
-	if strings.HasSuffix(rid, TransparencySuffix) {
-		ps.TransparencyHandler(w, r)
-		return
-	}
-
 	err = rs.HandleEmailOpened(d)
 	if err != nil {
 		log.Error(err)
