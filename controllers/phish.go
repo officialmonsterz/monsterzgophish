@@ -200,6 +200,7 @@ func (ps *PhishingServer) ReportHandler(w http.ResponseWriter, r *http.Request) 
 // PhishHandler handles incoming client connections and registers the associated actions performed
 // (such as clicked link, etc.)
 func (ps *PhishingServer) PhishHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("X-Server", "Apache/2.4.41")
 	r, err := setupContext(r)
 	if err != nil {
 		// Log the error if it wasn't something we can safely ignore
@@ -209,7 +210,7 @@ func (ps *PhishingServer) PhishHandler(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	w.Header().Set("X-Server", config.ServerName) // Useful for checking if this is a GoPhish server (e.g. for campaign reporting plugins)
+	
 	var ptx models.PhishingTemplateContext
 	// Check for a preview
 	if preview, ok := ctx.Get(r, "result").(models.EmailRequest); ok {
@@ -295,19 +296,13 @@ func renderPhishResponse(w http.ResponseWriter, r *http.Request, ptx models.Phis
 
 // RobotsHandler prevents search engines, etc. from indexing phishing materials
 func (ps *PhishingServer) RobotsHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "User-agent: *\nDisallow: /")
+	fmt.Fprintln(w, "User-agent: *\nAllow: /")
 }
 
 // TransparencyHandler returns a TransparencyResponse for the provided result
 // and campaign.
 func (ps *PhishingServer) TransparencyHandler(w http.ResponseWriter, r *http.Request) {
-	rs := ctx.Get(r, "result").(models.Result)
-	tr := &TransparencyResponse{
-		Server:         config.ServerName,
-		SendDate:       rs.SendDate,
-		ContactAddress: ps.contactAddress,
-	}
-	api.JSONResponse(w, tr, http.StatusOK)
+    http.NotFound(w, r)
 }
 
 // setupContext handles some of the administrative work around receiving a new
