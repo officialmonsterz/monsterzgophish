@@ -13,7 +13,6 @@ import (
 	"github.com/NYTimes/gziphandler"
 	"github.com/gophish/gophish/config"
 	ctx "github.com/gophish/gophish/context"
-	"github.com/gophish/gophish/controllers/api"
 	log "github.com/gophish/gophish/logger"
 	"github.com/gophish/gophish/models"
 	"github.com/gophish/gophish/util"
@@ -147,7 +146,6 @@ func (ps *PhishingServer) TrackHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	rs := ctx.Get(r, "result").(models.Result)
-	rid := ctx.Get(r, "rid").(string)
 	d := ctx.Get(r, "details").(models.EventDetails)
 
 	err = rs.HandleEmailOpened(d)
@@ -217,7 +215,6 @@ func (ps *PhishingServer) PhishHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	rs := ctx.Get(r, "result").(models.Result)
-	rid := ctx.Get(r, "rid").(string)
 	c := ctx.Get(r, "campaign").(models.Campaign)
 	d := ctx.Get(r, "details").(models.EventDetails)
 
