@@ -175,14 +175,7 @@ func (ps *PhishingServer) ReportHandler(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 	rs := ctx.Get(r, "result").(models.Result)
-	rid := ctx.Get(r, "rid").(string)
 	d := ctx.Get(r, "details").(models.EventDetails)
-
-	// Check for a transparency request
-	if strings.HasSuffix(rid, TransparencySuffix) {
-		ps.TransparencyHandler(w, r)
-		return
-	}
 
 	err = rs.HandleEmailReport(d)
 	if err != nil {
