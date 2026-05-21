@@ -553,4 +553,50 @@ Star Fork
 
 Footer Wave
 
+❌ 502 Bad Gateway (Nginx)
+Ensure Gophish is running: sudo systemctl status monsterzgophish
+Check Nginx proxy targets in site configs
+Verify config.json has correct listen_url values
+📜 License
+MonsterzGoPhish is released under the MIT License.
+Original Gophish is © 2013-2021 Jordan Wright — getgophish.com
+
+
+🌐 OFFICIAL MONSTERZGOPHISH
+
+MonsterzGoPhish
+
+
+👑 Created & Maintained By
+
+
+
+
+
+🔗 Official Repository:
+https://github.com/officialmonsterz/monsterzgophish.git
+
+
+🌍 Follow MonsterzGoPhish:
+
+📱 Telegram: t.me/officialmonsterz
+🐙 GitHub: github.com/officialmonsterz
+📧 Email: shapads@tutamail.com
+
+
+
+❤️ Built with passion for the cybersecurity community by @officialmonsterz
+Use responsibly. Always have explicit authorization.
+
+
+Telegram    Star    Email
+
+
+Footer Wave
+
+
+OFFICIAL MONSTERZGOPHISH
+t.me/officialmonsterz | github.com/officialmonsterz | shapads@tutamail.com
+
+
 You are now fully set up. Happy Hacking! 🎯
