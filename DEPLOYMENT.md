@@ -54,6 +54,7 @@ ufw	                                            Firewall management
 cd /opt
 sudo git clone https://github.com/officialmonsterz/monsterzgophish.git
 cd monsterzgophish
+export CGO_CFLAGS="-g -O2 -Wno-return-local-addr"
 
 🏗️ Build the Binary
 
