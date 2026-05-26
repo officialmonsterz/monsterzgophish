@@ -45,8 +45,7 @@ func NewPhishingTemplateContext(ctx TemplateContext, r BaseRecipient, rid string
         return PhishingTemplateContext{}, err
     }
 
-    // For the base URL, we'll reset the the path and the query
-    // This will create a URL in the form of http://example.com
+    // For the base URL, we'll reset the path and the query
     baseURL, err := url.Parse(templateURL)
     if err != nil {
         return PhishingTemplateContext{}, err
@@ -56,7 +55,7 @@ func NewPhishingTemplateContext(ctx TemplateContext, r BaseRecipient, rid string
 
     phishURL, _ := url.Parse(templateURL)
     q := phishURL.Query()
-    q.Set(RecipientParameter, rid)
+    q.Set("rid", rid)
     phishURL.RawQuery = q.Encode()
 
     trackingURL, _ := url.Parse(templateURL)
